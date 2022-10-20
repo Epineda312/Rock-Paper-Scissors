@@ -57,7 +57,7 @@ function game() {
     } else if (computerScore > playerScore){
         console.log(`   \nComputer Wins! ~ { Player Score: ${playerScore} ~ Computer Score: ${computerScore} ~ Ties: ${ties} }`);
     } else {    
-        console.log(`   \nIt's a draw! ~ { Player Score: ${playerScore} ~ Computer Score: ${computerScore} ~ Ties: ${ties} }`);
+        console.log(`   \nIt's a Draw! ~ { Player Score: ${playerScore} ~ Computer Score: ${computerScore} ~ Ties: ${ties} }`);
     }
 }
 
