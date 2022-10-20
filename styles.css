@@ -1,0 +1,16 @@
+body{
+    font-family: 'Roboto', sans-serif;
+}
+
+.homeScreen{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
