@@ -6,10 +6,10 @@ let choices = ['paper', 'scissors', 'rock',]
 //Function to randomly generate a choice
 function generateSingleChoice(){
     thisChoice = Math.floor(Math.random() * 3) + 1;
-    return choices[thisChoice - 1].toLowerCase();
+    return choices[thisChoice - 1];
 }
 
-// // Function to play a single round of PSR
+// // Function to play a single round of Rock Paper Scissors
 function playRound(pc, cc){
     pc = prompt('Paper, Scissors, Rock?').toUpperCase();
     cc = generateSingleChoice().toUpperCase();
@@ -19,21 +19,18 @@ function playRound(pc, cc){
      || pc === 'PAPER' && cc === 'ROCK'
      || pc === 'SCISSORS' && cc ==='PAPER'){
         score = 'w';
-        result = `   You Win!: ${pc} beats ${cc}`;
+        result = `      You Win!: ${pc} beats ${cc}`;
         console.log(result);
-        return score;
     } else if (pc === cc){
         score = 't';
-        result = `   Its a tie!: ${pc} equals ${cc}`;
+        result = `      Its a Tie!: ${pc} equals ${cc}`;
         console.log(result);
-        return score;
     } else {
         score = 'l';
-        result = `   You Lose!: ${pc} succumbs to ${cc}`;
+        result = `      You Lose!: ${pc} succumbs to ${cc}`;
         console.log(result);
-        return score;
     }
-    // console.log(result.slice(0,9));
+    return score
 }
 
 function game() {
@@ -56,13 +53,13 @@ function game() {
     }
 
     if(playerScore > computerScore){
-        console.log(`   Player Wins! Player Score: ${playerScore} Computer Score: ${computerScore} Ties: ${ties}`);
+        console.log(`   \nPlayer Wins! ~ { Player Score: ${playerScore} ~ Computer Score: ${computerScore} ~ Ties: ${ties} }`);
     } else if (computerScore > playerScore){
-        console.log(`   Computer Wins! Player Score: ${playerScore} Computer Score: ${computerScore} Ties: ${ties}`)
+        console.log(`   \nComputer Wins! ~ { Player Score: ${playerScore} ~ Computer Score: ${computerScore} ~ Ties: ${ties} }`);
     } else {    
-        console.log(`   It's a draw! Player Score: ${playerScore} Computer Score: ${computerScore} Ties: ${ties}`)
+        console.log(`   \nIt's a draw! ~ { Player Score: ${playerScore} ~ Computer Score: ${computerScore} ~ Ties: ${ties} }`);
     }
 }
 
-// //Test Functions - Run Game
+//Run Game
 game();
