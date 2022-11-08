@@ -1,7 +1,14 @@
 //Declare Variables
 let playerChoice = '';
 let computerChoice = '';
-let choices = ['paper', 'scissors', 'rock',]
+let choices = ['paper', 'scissors', 'rock',];
+const selectionButtons = document.querySelectorAll('[data-selection]');
+const yourScoreSpan = document.querySelector('[data-your-score');
+const computerScoreSpan = document.querySelector('[data-computer-score]');
+const tieScoreSpan = document.querySelector('[data-tie-score');
+const final = document.querySelector('[data-final-score]');
+const roundResult = document.querySelector('[data-round-result]');
+let gameOn = true;
 
 //Function to randomly generate a choice
 function generateSingleChoice(){
@@ -9,57 +16,55 @@ function generateSingleChoice(){
     return choices[thisChoice - 1];
 }
 
-// // Function to play a single round of Rock Paper Scissors
+//Add event listeners to game buttons, Play a "round" when clicked
+selectionButtons.forEach(selectionButton => {
+    selectionButton.addEventListener('click', e => {
+        const selectionName = selectionButton.dataset.selection.toUpperCase();
+        playRound(selectionName)
+    });
+});
+
+//Function to play a single round of Rock Paper Scissors
 function playRound(pc, cc){
-    pc = prompt('Paper, Scissors, Rock?').toUpperCase();
     cc = generateSingleChoice().toUpperCase();
     let result = '';
-
-    if( pc === 'ROCK' && cc === 'SCISSORS'
-     || pc === 'PAPER' && cc === 'ROCK'
-     || pc === 'SCISSORS' && cc ==='PAPER'){
-        score = 'w';
-        result = `      You Win!: ${pc} beats ${cc}`;
-        console.log(result);
-    } else if (pc === cc){
-        score = 't';
-        result = `      Its a Tie!: ${pc} equals ${cc}`;
-        console.log(result);
-    } else {
-        score = 'l';
-        result = `      You Lose!: ${pc} succumbs to ${cc}`;
-        console.log(result);
-    }
-    return score
-}
-
-function game() {
-    let playerScore = 0;
-    let computerScore = 0;
-    let ties = 0;
-
-    for(let i = 0; i < 5; i++) { 
-        console.log(`
-                    Game: ${i + 1}`);
-        console.log(`   Player Score: ${playerScore} Computer Score ${computerScore} Ties: ${ties}`);
-        currentPlay = playRound(playerChoice, computerChoice);
-        if( currentPlay === 'w'){
-            playerScore++;
-        } else if (currentPlay === 'l') {
-            computerScore++;
-        } else{
-            ties++;
+    
+    while(gameOn){
+        if(pc === 'ROCK' && cc === 'SCISSORS'
+        || pc === 'PAPER' && cc === 'ROCK'
+        || pc === 'SCISSORS' && cc ==='PAPER'){
+            if(parseInt(yourScoreSpan.innerText) < 5 && parseInt(computerScoreSpan.innerText) != 5){
+                incrementScore(yourScoreSpan);
+                score = 'w';
+                result = `      You Win!: ${pc} beats ${cc}`;
+                roundResult.innerText = result;
+                console.log(result);
+            } if (parseInt(yourScoreSpan.innerText) === 5){
+                final.innerText ='Player Wins!';
+                gameOn = false;
+            }
+        } else if (pc === cc){
+            incrementScore(tieScoreSpan);
+            score = 't';
+            result = `      Its a Tie!: ${pc} equals ${cc}`;
+            roundResult.innerText = result;
+            console.log(result);
+        } else {
+            if(parseInt(computerScoreSpan.innerText) < 5 && parseInt(yourScoreSpan.innerText) != 5){
+                incrementScore(computerScoreSpan);
+                score = 'l';
+                result = `      You Lose!: ${pc} succumbs to ${cc}`;
+                roundResult.innerText = result;
+                console.log(result);
+            } if (parseInt(computerScoreSpan.innerText) === 5){
+                final.innerText ='Computer Wins!';
+                gameOn = false;
+            } 
         }
-    }
-
-    if(playerScore > computerScore){
-        console.log(`   \nPlayer Wins! ~ { Player Score: ${playerScore} ~ Computer Score: ${computerScore} ~ Ties: ${ties} }`);
-    } else if (computerScore > playerScore){
-        console.log(`   \nComputer Wins! ~ { Player Score: ${playerScore} ~ Computer Score: ${computerScore} ~ Ties: ${ties} }`);
-    } else {    
-        console.log(`   \nIt's a Draw! ~ { Player Score: ${playerScore} ~ Computer Score: ${computerScore} ~ Ties: ${ties} }`);
+        return score
     }
 }
 
-//Run Game
-game();
+function incrementScore(scoreSpan){
+    scoreSpan.innerText = parseInt(scoreSpan.innerText) + 1;
+}

@@ -14,3 +14,20 @@ body{
     justify-content: center;
     align-items: center;
 }
+.selections{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+.selection{
+    font-size: 4rem;
+}
+
+.round-result{
+    margin-top: 10px;
+}
+.final{
+    margin-top: 10px;
+    font-weight: bold;
+}

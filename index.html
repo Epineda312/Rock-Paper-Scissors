@@ -15,9 +15,31 @@
         <h1>Paper <span>&#128221;</span></h1>
         <h1>Scissors <span>&#9986;</span></h1>
         <h1>Rock! <span>&#129704;</span></h1>
-        <p>Open The JavaScript Console to See The Game Results!</p>
+        <!-- <p>Open The JavaScript Console to See The Game Results!</p> -->
+        <div class="selections">
+            <button class="selection" data-selection="rock">✊</button>
+            <button class="selection" data-selection="paper">✋</button>
+            <button class="selection" data-selection="scissors">✌️</button>
+        </div>
+        <div>
+            You:
+            <span class="result-score" data-your-score>0</span>
+        </div>
+        <div>
+            Computer:
+            <span class="result-score" data-computer-score>0</span>
+        </div>
+        <div>
+            Ties:
+            <span class="result-score" data-tie-score>0</span>
+        </div>
+        <div class="round-result">
+            <span data-round-result></span>
+        </div>
+        <div class="final">
+            <span data-final-score></span>
+        </div>
     </div>
 </div>
-   
 </body>
 </html>
